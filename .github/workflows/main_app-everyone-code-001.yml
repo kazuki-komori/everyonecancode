@@ -70,7 +70,7 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0489C5E543B84BBBA186DFC730088F27 }}
       - uses: azure/appservice-settings@v1
         with:
-          app-name: 'ご自身のWebAppsのアプリ名'
+          app-name: 'app-everyone-code-001'
           slot-name: 'Production'  # Optional and needed only if the settings have to be configured on the specific deployment slot
           app-settings-json: '[{ "name": "CHAT_API_KEY", "value": "${{ secrets.VITE_CHAT_API_KEY }}", "slotSetting": false }, { "name": "CHAT_API_ENDPOINT", "value":  "${{ secrets.VITE_CHAT_API_ENDPOINT }}", "slotSetting": false }, { "name": "AZURE_OPENAI_MODEL_NAME", "value": "${{ secrets.VITE_AZURE_OPENAI_MODEL_NAME }}", "slotSetting": false }]'
         id: settings
