@@ -68,6 +68,12 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_64A32B9DE19542848F0E9727FAD54073 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_88A6A075A2E8428DB4564BFD8A0A12C6 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0489C5E543B84BBBA186DFC730088F27 }}
+      - uses: azure/appservice-settings@v1
+        with:
+          app-name: 'ご自身のWebAppsのアプリ名'
+          slot-name: 'Production'  # Optional and needed only if the settings have to be configured on the specific deployment slot
+          app-settings-json: '[{ "name": "CHAT_API_KEY", "value": "${{ secrets.VITE_CHAT_API_KEY }}", "slotSetting": false }, { "name": "CHAT_API_ENDPOINT", "value":  "${{ secrets.VITE_CHAT_API_ENDPOINT }}", "slotSetting": false }, { "name": "AZURE_OPENAI_MODEL_NAME", "value": "${{ secrets.VITE_AZURE_OPENAI_MODEL_NAME }}", "slotSetting": false }]'
+        id: settings
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
